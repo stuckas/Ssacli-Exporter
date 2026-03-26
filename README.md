@@ -38,35 +38,19 @@ disk_status{physicaldrive="box 3 bay 2 type SAS"} 1
 disk_status{physicaldrive="box 3 bay 3 type SAS"} 1
 disk_status{physicaldrive="box 3 bay 4 type SAS"} 1
 ```
-
+# Install ssacli_exporter
+```
+cp ssacli_exporter /usr/local/bin/
+cp ssacli_exporter.service /etc/systemd/system/
+systemctl daemon-reload
+systemctl enable ssacli_exporter.service
+systemctl start ssacli_exporter.service
+```
 # Install HP Raid HPSA ssacli on Ubuntu
 
-You just have to edit
-
 ```
-/etc/apt/sources.list
-```
-
-Then add the source at the end of the file
-
-```
-  deb http://downloads.linux.hpe.com/SDR/repo/mcp xenial/current non-free
-
-```
-
-Enroll keys for DEB-based systems
-Issue the following commands to enroll all keys on your deb-based system:
-
-```
-curl https://downloads.linux.hpe.com/SDR/hpPublicKey2048.pub | apt-key add -
-curl https://downloads.linux.hpe.com/SDR/hpPublicKey2048_key1.pub | apt-key add -
-curl https://downloads.linux.hpe.com/SDR/hpePublicKey2048_key1.pub | apt-key add -
-```
-Then install your package.
-
-```
-apt-get update && apt-get install ssacli
-
+wget https://downloads.linux.hpe.com/SDR/repo/mcp/ubuntu/pool/non-free/ssacli-6.45-8.0_amd64.deb (probably check for updates) 
+apt install ./ssacli-6.45-8.0_amd64.deb
 ```
 
 More Info 
